@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Public Pixel';
+    src: url('../fonts/PublicPixel.ttf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.text-container {
+    user-select: none;
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+}
+
+#text {
+    font-family: 'Public Pixel';
+    font-size: 32px;
+}
+
+#canvas {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+}
