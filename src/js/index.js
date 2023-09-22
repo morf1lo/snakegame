@@ -80,13 +80,13 @@ class Game {
             headY -= 5;
         }
     
-        if (headX < 0) {
+        if (headX <= 0) {
             headX = this.width;
         } else if (headX > this.width) {
             headX = 0;
         }
     
-        if (headY < 0) {
+        if (headY <= 0) {
             headY = this.height;
         } else if (headY > this.height) {
             headY = 0;
