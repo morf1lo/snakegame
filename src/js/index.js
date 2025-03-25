@@ -20,6 +20,9 @@ class Game {
         this.snakeColor = '#0bde00';
         this.foodColor = '#ff4040';
 
+        this.lastUpdateTime = 0;
+        this.updateInterval = 8;
+
         addEventListener('keydown', (e) => {
             const directions = {
                 37: 'left',
@@ -134,22 +137,24 @@ class Game {
         }
     }
 
-    loop() {
-        if (this.gameOver) {
-            return;
+    loop(currentTime) {
+        if (this.gameOver) return;
+
+        if (!this.lastUpdateTime) this.lastUpdateTime = currentTime;
+        const deltaTime = currentTime - this.lastUpdateTime;
+
+        if (deltaTime >= this.updateInterval) {
+            this.ctx.clearRect(0, 0, this.width, this.height);
+            this.updateSnake();
+            this.checkCollision();
+            this.drawSnake();
+            this.drawFood();
+            this.lastUpdateTime = currentTime;
         }
 
-        this.ctx.clearRect(0, 0, this.width, this.height);
-    
-        this.updateSnake();
-        this.checkCollision();
-
-        this.drawSnake();
-        this.drawFood();
-    
         requestAnimationFrame(this.loop.bind(this));
     }
 }
 
 const game = new Game();
-game.loop();
+requestAnimationFrame(game.loop.bind(game));
